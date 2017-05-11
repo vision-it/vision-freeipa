@@ -16,12 +16,12 @@ class vision_freeipa::run (
   Array  $environment = [],
   String $hostname    = $::fqdn,
   String $version     = 'latest',
-  String $ipaddress_eth1 = $::ipaddress_eth1,
+  String $ipaddress   = $::ipaddress_eth0,
 
 ) {
 
   $docker_environment = concat([
-    "IPA_SERVER_IP=${ipaddress_eth1}"
+    "IPA_SERVER_IP=${ipaddress}"
   ], $environment)
 
   ::docker::run { 'freeipa':
