@@ -8,15 +8,36 @@ describe 'vision_freeipa' do
         facts
       end
 
-      context 'compile' do
-        it { is_expected.to compile.with_all_deps }
+      context 'include slave' do
+        let :params do
+          {
+            type: 'slave'
+
+          }
+        end
+        context 'compile' do
+          it { is_expected.to compile.with_all_deps }
+        end
+
+        context 'contains' do
+          it { is_expected.to contain_class('vision_freeipa::slave') }
+        end
       end
 
-      context 'contains' do
-        it { is_expected.to contain_class('vision_docker') }
-        it { is_expected.to contain_class('vision_freeipa::images') }
-        it { is_expected.to contain_class('vision_freeipa::run') }
-        it { is_expected.to contain_class('vision_freeipa::config') }
+      context 'include master' do
+        let :params do
+          {
+            type: 'master'
+
+          }
+        end
+        context 'compile' do
+          it { is_expected.to compile.with_all_deps }
+        end
+
+        context 'contains' do
+          it { is_expected.to contain_class('vision_freeipa::master') }
+        end
       end
     end
   end

@@ -8,7 +8,7 @@
 # --------
 #
 # @example
-# contain ::vision_freeipa
+# contain ::vision_freeipa::images
 #
 
 class vision_freeipa::images (

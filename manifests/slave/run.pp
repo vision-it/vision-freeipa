@@ -1,4 +1,4 @@
-# Class: vision_freeipa::run
+# Class: vision_freeipa::slave::run
 # ===========================
 #
 # Parameters
@@ -8,10 +8,10 @@
 # --------
 #
 # @example
-# contain ::vision_freeipa
+# contain ::vision_freeipa::slave::run
 #
 
-class vision_freeipa::run (
+class vision_freeipa::slave::run (
 
   Array  $environment = [],
   String $hostname    = $::fqdn,
@@ -24,7 +24,7 @@ class vision_freeipa::run (
     "IPA_SERVER_IP=${ipaddress}"
   ], $environment)
 
-  ::docker::run { 'freeipa':
+  ::docker::run { 'freeipa-replica':
     image            => "freeipa/freeipa-server:${version}",
     volumes          => [
       '/data/ipa:/data:Z',
@@ -46,6 +46,7 @@ class vision_freeipa::run (
       '9445:9445',
     ],
     extra_parameters => [ '--tmpfs /tmp', '--tmpfs /run' ],
+    command          => 'ipa-replica-install'
   }
 
 }

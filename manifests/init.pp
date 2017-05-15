@@ -13,21 +13,18 @@
 
 class vision_freeipa (
 
+  String $type,
   String $realm,
   String $ds_password,
-  String $admin_password,
 
 ) {
 
-  contain ::vision_docker
-  contain ::vision_freeipa::images
-  contain ::vision_freeipa::config
-  contain ::vision_freeipa::run
+  if ($type == 'master') {
+    contain vision_freeipa::master
+  }
 
-  # Order of execution
-  Class['::vision_docker']
-  -> Class['::vision_freeipa::images']
-  -> Class['::vision_freeipa::config']
-  ~> Class['::vision_freeipa::run']
+  if ($type == 'slave') {
+    contain vision_freeipa::slave
+  }
 
 }

@@ -1,4 +1,4 @@
-# Class: vision_freeipa
+# Class: vision_freeipa::master::config
 # ===========================
 #
 # Parameters
@@ -8,14 +8,14 @@
 # --------
 #
 # @example
-# contain ::vision_freeipa
+# contain ::vision_freeipa::master::config
 #
 
-class vision_freeipa::config (
+class vision_freeipa::master::config (
 
-  String $realm          = $vision_freeipa::realm,
-  String $ds_password    = $vision_freeipa::ds_password,
-  String $admin_password = $vision_freeipa::admin_password,
+  String $realm          = $vision_freeipa::master::realm,
+  String $ds_password    = $vision_freeipa::master::ds_password,
+  String $admin_password = $vision_freeipa::master::admin_password,
 
 ) {
 
