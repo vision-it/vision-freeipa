@@ -1,16 +1,16 @@
 require 'spec_helper_acceptance'
 
-describe 'vision_freeipa::slave' do
+describe 'vision_freeipa::replica' do
   context 'with defaults' do
     it 'idempotentlies run' do
       pp = <<-EOS
 
         class vision_docker () {}
         class vision_freeipa::images () {}
-        class vision_freeipa::slave::run () {}
+        class vision_freeipa::replica::run () {}
 
         class { 'vision_freeipa':
-         type => 'slave',
+         type => 'replica',
         }
       EOS
 

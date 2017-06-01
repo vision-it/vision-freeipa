@@ -1,4 +1,4 @@
-# Class: vision_freeipa::slave::run
+# Class: vision_freeipa::replica::run
 # ===========================
 #
 # Parameters
@@ -8,10 +8,10 @@
 # --------
 #
 # @example
-# contain ::vision_freeipa::slave::run
+# contain ::vision_freeipa::replica::run
 #
 
-class vision_freeipa::slave::run (
+class vision_freeipa::replica::run (
 
   Array  $environment = [],
   String $hostname    = $::fqdn,

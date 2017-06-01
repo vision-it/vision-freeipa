@@ -23,8 +23,8 @@ class vision_freeipa (
     contain vision_freeipa::master
   }
 
-  if ($type == 'slave') {
-    contain vision_freeipa::slave
+  if ($type == 'replica') {
+    contain vision_freeipa::replica
   }
 
 }

@@ -1,4 +1,4 @@
-# Class: vision_freeipa::slave
+# Class: vision_freeipa::replica
 # ===========================
 #
 # Parameters
@@ -8,10 +8,10 @@
 # --------
 #
 # @example
-# contain ::vision_freeipa::slave
+# contain ::vision_freeipa::replica
 #
 
-class vision_freeipa::slave (
+class vision_freeipa::replica (
 
   String $admin_password,
   String $master_hostname,
@@ -22,13 +22,13 @@ class vision_freeipa::slave (
 
   contain ::vision_docker
   contain ::vision_freeipa::images
-  contain ::vision_freeipa::slave::config
-  contain ::vision_freeipa::slave::run
+  contain ::vision_freeipa::replica::config
+  contain ::vision_freeipa::replica::run
 
   # Order of execution
   Class['::vision_docker']
   -> Class['::vision_freeipa::images']
-  -> Class['::vision_freeipa::slave::config']
-  ~> Class['::vision_freeipa::slave::run']
+  -> Class['::vision_freeipa::replica::config']
+  ~> Class['::vision_freeipa::replica::run']
 
 }

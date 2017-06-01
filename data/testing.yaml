@@ -5,5 +5,5 @@ vision_freeipa::ds_password: 'dspassword123'
 vision_freeipa::master::admin_password: 'adminpassword123'
 vision_freeipa::master::run::ipaddress: '127.0.0.1'
 
-vision_freeipa::slave::admin_password: 'adminpassword321'
-vision_freeipa::slave::run::ipaddress: '127.0.0.2'
+vision_freeipa::replica::admin_password: 'adminpassword321'
+vision_freeipa::replica::run::ipaddress: '127.0.0.2'
