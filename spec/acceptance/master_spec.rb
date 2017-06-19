@@ -20,6 +20,13 @@ describe 'vision_freeipa::master' do
   end
 
   context 'files provision' do
+    describe file('/data/ipa/etc/httpd/conf.d/ipa-rewrite.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'RewriteEngine' }
+      it { is_expected.to contain 'RewriteRule' }
+      it { is_expected.to contain 'RequestHeader' }
+    end
+
     describe file('/data/ipa/ipa-server-install-options') do
       it { is_expected.to be_file }
       it { is_expected.to contain 'unattended' }

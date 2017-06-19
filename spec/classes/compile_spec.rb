@@ -8,10 +8,10 @@ describe 'vision_freeipa' do
         facts
       end
 
-      context 'include slave' do
+      context 'include replica' do
         let :params do
           {
-            type: 'slave'
+            type: 'replica'
 
           }
         end
@@ -20,7 +20,7 @@ describe 'vision_freeipa' do
         end
 
         context 'contains' do
-          it { is_expected.to contain_class('vision_freeipa::slave') }
+          it { is_expected.to contain_class('vision_freeipa::replica') }
         end
       end
 

@@ -4,3 +4,7 @@ RewriteEngine on
 
 # Rewrite for plugin index, make it like it's a static file
 RewriteRule ^/ipa/ui/js/freeipa/plugins.js$    /ipa/wsgi/plugins.py [PT]
+
+<% if @request_header != '' -%>
+<%= @request_header %>
+<% end -%>

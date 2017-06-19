@@ -15,8 +15,9 @@ class vision_freeipa::replica (
 
   String $admin_password,
   String $master_hostname,
-  String $master_domain,
-  String $ds_password     = $vision_freeipa::ds_password,
+
+  String $master_realm = $vision_freeipa::realm,
+  String $ds_password  = $vision_freeipa::ds_password,
 
 ) {
 

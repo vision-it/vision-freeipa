@@ -17,6 +17,8 @@ class vision_freeipa::master::config (
   String $ds_password    = $vision_freeipa::master::ds_password,
   String $admin_password = $vision_freeipa::master::admin_password,
 
+  Optional[String] $request_header = $vision_freeipa::master::request_header
+
 ) {
 
   file { ['/data',
@@ -36,7 +38,7 @@ class vision_freeipa::master::config (
 
   file { '/data/ipa/etc/httpd/conf.d/ipa-rewrite.conf':
     ensure  => present,
-    content => file('vision_freeipa/ipa-rewrite.conf'),
+    content => template('vision_freeipa/ipa-rewrite.conf.erb'),
     require => File['/data/ipa/etc/httpd/conf.d'],
   }
 
