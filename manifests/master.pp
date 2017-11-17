@@ -13,8 +13,8 @@
 
 class vision_freeipa::master (
 
-  Optional[String] $request_header = undef,
   String $admin_password,
+  Optional[String] $request_header = undef,
   String $ds_password     = $vision_freeipa::ds_password,
   String $realm           = $vision_freeipa::realm,
 
