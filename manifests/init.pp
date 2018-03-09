@@ -16,6 +16,7 @@ class vision_freeipa (
   String $type,
   String $realm,
   String $ds_password,
+  String $version,
 
 ) {
 

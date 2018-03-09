@@ -1,3 +1,4 @@
 ---
 vision_freeipa::type: 'master'
+vision_freeipa::version: 'latest'
 

@@ -15,7 +15,7 @@ class vision_freeipa::master::run (
 
   Array  $environment = [],
   String $hostname    = $::fqdn,
-  String $version     = 'latest',
+  String $version     = $vision_freeipa::version,
   String $ipaddress   = $::ipaddress_eth0,
 
 ) {

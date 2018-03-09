@@ -13,12 +13,14 @@
 
 class vision_freeipa::images (
 
+  String $version = $vision_freeipa::version
+
 ) {
 
   ::docker::image { 'freeipa':
     ensure    => present,
     image     => 'freeipa/freeipa-server',
-    image_tag => 'latest',
+    image_tag => $version,
   }
 
 }
