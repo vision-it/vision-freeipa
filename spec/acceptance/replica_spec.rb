@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'vision_freeipa::replica' do
   context 'with defaults' do
     it 'idempotentlies run' do
-      pp = <<-EOS
+      pp = <<-FILE
 
         class vision_docker () {}
         class vision_freeipa::images () {}
@@ -12,7 +12,7 @@ describe 'vision_freeipa::replica' do
         class { 'vision_freeipa':
          type => 'replica',
         }
-      EOS
+      FILE
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
