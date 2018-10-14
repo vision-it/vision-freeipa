@@ -21,7 +21,8 @@ class vision_freeipa::master::run (
 ) {
 
   $docker_environment = concat([
-    "IPA_SERVER_IP=${ipaddress}"
+    "IPA_SERVER_IP=${ipaddress}",
+    "IPA_SERVER_HOSTNAME=${hostname}"
   ], $environment)
 
   ::docker::run { 'freeipa':
@@ -47,7 +48,7 @@ class vision_freeipa::master::run (
       '9444:9444',
       '9445:9445',
     ],
-    extra_parameters => [ '--tmpfs /tmp', '--tmpfs /run' ],
+    extra_parameters => [ '--tmpfs /tmp', '--tmpfs /run', '--sysctl net.ipv6.conf.all.disable_ipv6=0' ],
   }
 
 }
