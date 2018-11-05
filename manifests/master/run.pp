@@ -32,6 +32,7 @@ class vision_freeipa::master::run (
       '/sys/fs/cgroup:/sys/fs/cgroup:ro',
     ],
     hostname         => $hostname,
+    dns              => $ipaddress,
     env              => $docker_environment,
     ports            => [
       '80:80',
@@ -48,7 +49,11 @@ class vision_freeipa::master::run (
       '9444:9444',
       '9445:9445',
     ],
-    extra_parameters => [ '--tmpfs /tmp', '--tmpfs /run', '--sysctl net.ipv6.conf.all.disable_ipv6=0' ],
+    extra_parameters => [ '--tmpfs /tmp',
+                          '--tmpfs /run',
+                          '--sysctl net.ipv6.conf.all.disable_ipv6=0',
+                          '--cap-add=SYS_ADMIN',
+                          '--cap-add SYS_TIME' ]
   }
 
 }
