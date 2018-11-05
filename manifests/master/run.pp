@@ -32,7 +32,6 @@ class vision_freeipa::master::run (
       '/sys/fs/cgroup:/sys/fs/cgroup:ro',
     ],
     hostname         => $hostname,
-    dns              => $ipaddress,
     env              => $docker_environment,
     ports            => [
       '80:80',
