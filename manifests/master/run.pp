@@ -51,7 +51,6 @@ class vision_freeipa::master::run (
     extra_parameters => [ '--tmpfs /tmp',
                           '--tmpfs /run',
                           '--sysctl net.ipv6.conf.all.disable_ipv6=0',
-                          '--cap-add=SYS_ADMIN',
                           '--cap-add SYS_TIME' ]
   }
 
