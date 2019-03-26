@@ -8,6 +8,8 @@ describe 'vision_freeipa::images' do
         facts
       end
 
+      let(:pre_condition) { 'include vision_docker' }
+
       context 'compile' do
         it { is_expected.to compile.with_all_deps }
       end

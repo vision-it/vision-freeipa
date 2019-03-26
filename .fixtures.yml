@@ -5,10 +5,10 @@ fixtures:
       ref: "4.24.0"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
     apt:
-      ref: "4.2.0"
+      ref: "5.0.1"
       repo: "https://github.com/puppetlabs/puppetlabs-apt"
     docker:
-      ref: "1.0.4"
+      ref: "3.5.0"
       repo: "https://github.com/puppetlabs/puppetlabs-docker"
     vision_docker:
       ref: "production"
