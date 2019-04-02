@@ -9,6 +9,8 @@ describe 'vision_freeipa' do
       end
 
       context 'include replica' do
+        let(:pre_condition) { 'include vision_docker' }
+
         let :params do
           {
             type: 'replica'
@@ -25,6 +27,8 @@ describe 'vision_freeipa' do
       end
 
       context 'include master' do
+        let(:pre_condition) { 'include vision_docker' }
+
         let :params do
           {
             type: 'master'
