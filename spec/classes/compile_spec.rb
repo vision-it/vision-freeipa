@@ -27,7 +27,11 @@ describe 'vision_freeipa' do
       end
 
       context 'include master' do
-        let(:pre_condition) { 'include vision_docker' }
+        let :pre_condition do
+          [
+            'class vision_gluster::node () {}',
+          ]
+        end
 
         let :params do
           {
@@ -41,6 +45,8 @@ describe 'vision_freeipa' do
 
         context 'contains' do
           it { is_expected.to contain_class('vision_freeipa::master') }
+          it { is_expected.to contain_class('vision_freeipa::master::config') }
+          it { is_expected.to contain_class('vision_freeipa::master::docker') }
         end
       end
     end

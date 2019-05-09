@@ -20,15 +20,9 @@ class vision_freeipa::master (
 
 ) {
 
-  contain ::vision_docker
-  contain ::vision_freeipa::images
-  contain ::vision_freeipa::master::config
-  contain ::vision_freeipa::master::run
+  contain ::vision_gluster::node
 
-  # Order of execution
-  Class['::vision_docker']
-  -> Class['::vision_freeipa::images']
-  -> Class['::vision_freeipa::master::config']
-  ~> Class['::vision_freeipa::master::run']
+  contain ::vision_freeipa::master::config
+  contain ::vision_freeipa::master::docker
 
 }

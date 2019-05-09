@@ -4,6 +4,7 @@ vision_freeipa::ds_password: 'dspassword123'
 
 vision_freeipa::master::run::version: 'latest'
 vision_freeipa::images::version: 'latest'
+vision_freeipa::images::environment: ['foo=bar']
 
 vision_freeipa::master::request_header: 'RequestHeader edit Referer'
 vision_freeipa::master::admin_password: 'adminpassword123'
