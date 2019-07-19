@@ -4,15 +4,17 @@
 class vision_freeipa::master::docker (
 
   Array  $environment = [],
-  String $hostname    = $::fqdn,
+  String $hostname    = 'vision.fraunhofer.de',
   String $version     = $vision_freeipa::version,
-  String $ipaddress   = $::ipaddress_eth0,
+  String $ipaddress   = $::ipaddress,
 
 ) {
 
   $docker_environment = concat([
     "IPA_SERVER_IP=${ipaddress}",
-    "IPA_SERVER_HOSTNAME=${hostname}"
+    "IPA_SERVER_HOSTNAME=${hostname}",
+    'DEBUG_TRACE=1',
+    'DEBUG_NO_EXIT=1',
   ], $environment)
 
   # options not available for docker swarm stacks
@@ -23,7 +25,8 @@ class vision_freeipa::master::docker (
     'version' => '3.7',
     'services' => {
       'freeipa' => {
-        'image'       => "freeipa/freeipa-server:${version}",
+        'image'       => "vision/freeipa-server:${version}",
+        'entrypoint'  => '/usr/local/sbin/init',
         'hostname'    => $hostname,
         'volumes'     => [
           '/vision/data/ipa:/data',
@@ -32,14 +35,14 @@ class vision_freeipa::master::docker (
             'type'   => 'tmpfs',
             'target' => '/tmp',
             'tmpfs'  => {
-              'size' => '100000000' # 100MB
+              'size' => 100000000 # 100MB
             },
           },
           {
             'type'   => 'tmpfs',
             'target' => '/run',
             'tmpfs'  => {
-              'size' => '10000000' # 10MB
+              'size' => 50000000 # 50MB
             },
           },
         ],
@@ -59,6 +62,17 @@ class vision_freeipa::master::docker (
           '9444:9444', # dogtag (users, SSL)
           '9445:9445', # dogtag (administrators)
         ],
+        deploy       => {
+          labels => [
+            'traefik.port=80',
+            'traefik.frontend.rule=PathPrefix:/ipa',
+            'traefik.enable=true',
+            'traefik.frontend.passHostHeader=true',
+            'traefik.frontend.whiteList.sourceRange=10.54.0.0/16,10.55.63.0/24,10.55.71.0/24',
+            'traefik.docker.network=vision_default',
+            # TODO: proxy set-cookie
+          ]
+        }
       }
     }
   }
