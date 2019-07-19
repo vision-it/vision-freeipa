@@ -25,8 +25,8 @@ class vision_freeipa::master::docker (
     'version' => '3.7',
     'services' => {
       'freeipa' => {
-        'image'       => "vision/freeipa-server:${version}",
-        'entrypoint'  => '/usr/local/sbin/init',
+        # use our own image which disables ipv6 checks
+        'image'       => "visionit/freeipa-server:${version}",
         'hostname'    => $hostname,
         'volumes'     => [
           '/vision/data/ipa:/data',
