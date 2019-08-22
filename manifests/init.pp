@@ -24,8 +24,4 @@ class vision_freeipa (
     contain vision_freeipa::master
   }
 
-  if ($type == 'replica') {
-    contain vision_freeipa::replica
-  }
-
 }

@@ -21,25 +21,24 @@ class vision_freeipa::master::config (
 
 ) {
 
-  file { ['/data',
-          '/data/ipa',
-          '/data/ipa/etc',
-          '/data/ipa/etc/httpd',
-          '/data/ipa/etc/httpd/conf.d',
+  file { ['/vision/data/ipa',
+          '/vision/data/ipa/etc',
+          '/vision/data/ipa/etc/httpd',
+          '/vision/data/ipa/etc/httpd/conf.d',
   ]:
     ensure  => directory,
   }
 
-  file { '/data/ipa/ipa-server-install-options':
+  file { '/vision/data/ipa/ipa-server-install-options':
     ensure  => present,
     content => template('vision_freeipa/ipa-server-install-options.erb'),
-    require => File['/data/ipa'],
+    require => File['/vision/data/ipa'],
   }
 
-  file { '/data/ipa/etc/httpd/conf.d/ipa-rewrite.conf':
+  file { '/vision/data/ipa/etc/httpd/conf.d/ipa-rewrite.conf':
     ensure  => present,
     content => template('vision_freeipa/ipa-rewrite.conf.erb'),
-    require => File['/data/ipa/etc/httpd/conf.d'],
+    require => File['/vision/data/ipa/etc/httpd/conf.d'],
   }
 
 }

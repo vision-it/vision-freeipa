@@ -1,13 +1,13 @@
 ---
 vision_freeipa::realm: 'EXAMPLE.COM'
 vision_freeipa::ds_password: 'dspassword123'
-
-vision_freeipa::master::run::version: 'latest'
-vision_freeipa::images::version: 'latest'
+vision_freeipa::version: 'latest'
 
 vision_freeipa::master::request_header: 'RequestHeader edit Referer'
 vision_freeipa::master::admin_password: 'adminpassword123'
-vision_freeipa::master::run::ipaddress: '127.0.0.1'
+vision_freeipa::master::docker::environment: ['foo=bar']
+vision_freeipa::master::docker::ipaddress: '127.0.0.1'
+vision_freeipa::master::docker::hostname: 'foobar.de'
 
 vision_freeipa::replica::admin_password: 'adminpassword321'
 vision_freeipa::replica::run::ipaddress: '127.0.0.2'
