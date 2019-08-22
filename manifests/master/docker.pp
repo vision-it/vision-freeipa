@@ -70,7 +70,6 @@ class vision_freeipa::master::docker (
             'traefik.frontend.passHostHeader=true',
             'traefik.frontend.whiteList.sourceRange=10.54.0.0/16,10.55.63.0/24,10.55.71.0/24',
             'traefik.docker.network=vision_default',
-            # TODO: proxy set-cookie
           ]
         }
       }
