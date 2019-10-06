@@ -13,8 +13,8 @@ class vision_freeipa::master::docker (
   $docker_environment = concat([
     "IPA_SERVER_IP=${ipaddress}",
     "IPA_SERVER_HOSTNAME=${hostname}",
-    'DEBUG_TRACE=1',
-    'DEBUG_NO_EXIT=1',
+ #   'DEBUG_TRACE=1',
+ #   'DEBUG_NO_EXIT=1',
   ], $environment)
 
   # options not available for docker swarm stacks
