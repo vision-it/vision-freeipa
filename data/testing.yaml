@@ -8,6 +8,7 @@ vision_freeipa::master::admin_password: 'adminpassword123'
 vision_freeipa::master::docker::environment: ['foo=bar']
 vision_freeipa::master::docker::ipaddress: '127.0.0.1'
 vision_freeipa::master::docker::hostname: 'foobar.de'
+vision_freeipa::master::docker::whitelist: '192.168.0.1/24'
 
 vision_freeipa::replica::admin_password: 'adminpassword321'
 vision_freeipa::replica::run::ipaddress: '127.0.0.2'

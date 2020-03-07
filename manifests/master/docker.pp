@@ -3,6 +3,7 @@
 
 class vision_freeipa::master::docker (
 
+  String $whitelist,
   Array  $environment = [],
   String $hostname    = 'vision.fraunhofer.de',
   String $version     = $vision_freeipa::version,
@@ -62,14 +63,16 @@ class vision_freeipa::master::docker (
           '9444:9444', # dogtag (users, SSL)
           '9445:9445', # dogtag (administrators)
         ],
-        deploy       => {
-          labels => [
-            'traefik.port=80',
-            'traefik.frontend.rule=PathPrefix:/ipa',
+        'deploy'       => {
+          'labels' => [
             'traefik.enable=true',
-            'traefik.frontend.passHostHeader=true',
-            'traefik.frontend.whiteList.sourceRange=10.54.0.0/16,10.55.63.0/24,10.55.71.0/24',
-            'traefik.docker.network=vision_default',
+            'traefik.http.services.ipa.loadbalancer.server.port=80',
+            'traefik.http.services.ipa.loadbalancer.passHostHeader=true',
+            'traefik.http.routers.ipa.rule=PathPrefix(`/ipa`)',
+            'traefik.http.routers.ipa.entrypoints=https',
+            'traefik.http.routers.ipa.tls=true',
+            'traefik.http.routers.ipa.middlewares=whitelist-ipa@docker',
+            "traefik.http.middlewares.whitelist-ipa.ipwhitelist.sourcerange=${whitelist}",
           ]
         }
       }
