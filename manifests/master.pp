@@ -20,7 +20,7 @@ class vision_freeipa::master (
 
 ) {
 
-  contain ::vision_gluster::node
+  # contain ::vision_gluster::node
 
   contain ::vision_freeipa::master::config
   contain ::vision_freeipa::master::docker
