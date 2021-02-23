@@ -8,6 +8,7 @@ class vision_freeipa::master::docker (
   String $hostname    = 'vision.fraunhofer.de',
   String $version     = $vision_freeipa::version,
   String $ipaddress   = $::ipaddress,
+  String $traefik_rule = $vision_freeipa::master::traefik_rule,
 
 ) {
 
@@ -68,7 +69,7 @@ class vision_freeipa::master::docker (
             'traefik.enable=true',
             'traefik.http.services.ipa.loadbalancer.server.port=80',
             'traefik.http.services.ipa.loadbalancer.passHostHeader=true',
-            'traefik.http.routers.ipa.rule=PathPrefix(`/ipa`)',
+            "traefik.http.routers.ipa.rule=${traefik_rule}",
             'traefik.http.routers.ipa.entrypoints=https',
             'traefik.http.routers.ipa.tls=true',
             'traefik.http.routers.ipa.middlewares=whitelist-ipa@docker',
